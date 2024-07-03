@@ -1,0 +1,196 @@
+---
+title: "Assignment 1"
+author: "COMM 187"
+output: pdf_document
+header-includes:
+  - \usepackage{xcolor}
+  - \newcommand{\magenta}[1]{\textcolor{magenta}{#1}}
+urlcolor: blue
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Question 1
+
+A communication researcher is analyzing the average time spent by individuals on different social media platforms. They collected data on the time spent (in minutes) on six platforms: Facebook, Instagram, Twitter/X, Tiktok, Snapchat, and YouTube. The times spent on these platforms by a particular individual are stored in variables `facebook_time`, `instagram_time`, `twitterx_time`, `tiktok_time`, `snapchat_time`, and `youtube_time`, as shown below.
+
+Write an R code that calculates the average time spent on these platforms by this individual, and assign it to a new variable `average_time`. Use the variables provided and make sure to include the correct number of platforms in your calculation.
+
+```{r}
+facebook_time <- 40
+instagram_time <- 115
+twitterx_time <- 15
+tiktok_time <- 100
+snapchat_time <- 20
+youtube_time <- 35
+
+# Write your code below
+...
+```
+
+## Question 2
+
+A social media influencer wants to calculate the percentage increase in their followers on Instagram over the last month. They had `initial_followers` at the beginning of the month and `final_followers` at the end of the month. Write an R code that calculates the percentage increase in their followers using these variables, and assigns this value to a new variable `percentage_increase`.
+
+Tip: Subtract the initial number of followers from the final number before dividing by the initial number of followers, and then multiply by 100 to get the percentage.
+
+```{r}
+initial_followers <- 39024 
+final_followers <- 46784
+
+# Write your code below
+percentage_increase <- ...
+```
+
+## Question 3
+
+### a) Calculate the "purchase rate"
+
+A digital marketing researcher is studying the effectiveness of a social media ad campaign for a product. They want to calculate the "purchase rate", which is the percentage of people who made an online purchase after clicking on an ad. If `total_clicks` people clicked on the ad and `total_purchases` people made an online purchase, write an R expression that calculates the purchase rate using these variables, and assigns this value to a new variable `purchase_rate`.
+
+Tip: Divide the number of purchases by the number of clicks and then multiply by 100 to get the percentage.
+
+```{r}
+total_clicks <- 1239099
+total_purchases <- 5912
+
+# Write your code below
+purchase_rate <- ...
+```
+
+### b) Predict future clicks
+
+The digital marketing researcher now also wants to predict future purchases through this digital ad campaign. They first decide to predict the number of clicks in the future. According to their analysis, the number of clicks grows by 1.2 times every week.
+
+If this pace of growth keeps up, what will be the total number of clicks by the end of the next 4 weeks? Calculate the number of clicks in the next 4 weeks, and assign it to a new variable `total_clicks_future`.
+
+Tip: In one week, the number of clicks will go from `total_clicks` to `total_clicks * 1.2`. Similarly, in two weeks, the number of clicks will go up to `total_clicks * 1.2 * 1.2`. Think about which operation you can use to calculate the total number of clicks in 4 weeks. Another tip: Number of clicks can be counted as positive integers. They cannot be negative. They cannot have decimal points. If you get a number with decimal points, round them to the nearest integer.
+
+```{r}
+# Write your code below
+total_clicks_future <- ...
+```
+
+### c) Predict total purchases
+
+Now that the digital marketing researcher has calculated the predicted number of clicks in the next 4 weeks in `total_clicks_future`, they would like to predict the total number of purchases by the end of the next 4 weeks.
+
+Calculate the total number of predicted purchases by the end of 4 weeks, which is `total_clicks_future` times the `purchase_rate` calculated above, divided by 100, and assign this value to a new variable `predicted_purchases`.
+
+Tip: Just like the number of clicks, the number of purchases are positive integers too. They cannot be negative. They cannot have decimal points. If you get a number with decimal points, round them to the nearest integer.
+
+```{r}
+# Write your code below
+predicted_purchases <- ...
+```
+
+### d) Calculate predicted increase in purchases
+
+Finally, the digital marketing researcher would like to calculate the predicted increase in the number of purchases in 4 weeks.
+
+Calculate the predicted increase in purchases in 4 weeks by calculating the difference between `predicted_purchases` and `total_purchases`, and assigning it to a new variable `predicted_purchase_increase`.
+
+```{r}
+# Write your code below
+predicted_purchase_increase <- ...
+```
+
+## Question 4
+
+Let us practice some logical (boolean) operators.
+
+We have two boolean variables below, `bool_01` and `bool_02`.
+
+Perform the following operations and store the output in the new variables as instructed. Refer to this week's lab for help.
+
+-   `bool_and`: "and" operation
+-   `bool_or`: "or" operation
+-   `bool_xor`: "exclusive or" operation
+
+```{r}
+bool_01 <- TRUE
+bool_02 <- FALSE
+
+# Write your code below
+bool_and <- ...
+bool_or <- ...
+bool_xor <- ...
+```
+
+## Question 5
+
+You have just downloaded data from Twitter/X on three individuals. Let's call them individual 1, individual 2, and individual 3. For each of them, you have the number of tweets/posts they have made since Jan 1, 2024. These are stored in the variables `tweets_indv_01` for individual 1, `tweets_indv_02` for individual 2, and `tweets_indv_03` for individual 3.
+
+Your task: For each individual, test whether they made more than 500 tweets.
+
+Make three new boolean variables, `ismorethan500_indv_01` for individual 1, `ismorethan500_indv_02` for individual 2, and `ismorethan500_indv_03` for individual 3. For each of these variables, their value should be TRUE if the number of tweets for that individual is greater than 500. If not, their value should be FALSE.
+
+```{r}
+tweets_indv_01 <- as.numeric("234")
+tweets_indv_02 <- as.numeric("500")
+tweets_indv_03 <- as.numeric("502")
+
+# Write your code below
+...
+```
+
+## Question 6
+
+### a. Make a vector with the times spent on Instagram in sequence from day 1 to day 7
+
+A communication researcher is analyzing the time spent by one individual on Instagram. They collected data on the time spent (in minutes) on Instagram for 7 consecutive days. The times spent on each day by this individual are stored in variables `ig_day_01`, `ig_day_02`, `ig_day_03`, `ig_day_04`, `ig_day_05`, `ig_day_06`, and `ig_day_07`.
+
+```{r}
+# Write your code below
+ig_day_01 <- 120
+ig_day_02 <- 110
+ig_day_03 <- 15
+ig_day_04 <- 130
+ig_day_05 <- 135
+ig_day_06 <- 100
+ig_day_07 <- 120
+
+ig_vector <- ...
+```
+
+### b. Make a vector for days 8, 9, and 10
+
+Immediately following the 7 consecutive days, the communication researcher continues to observe the time spent by the same individual on Instagram for three more consecutive days. On day 8, this individual spends 90 minutes on Instagram, on day 9 this individual spends 200 minutes on Instagram, and on day 10, they spend 145 minutes.
+
+Make a new vector which just has these three data points in sequence, i.e., time spent on day 8 comes first, then day 9, then day 10.
+
+```{r}
+ig_vector_later <- ...
+```
+
+### c. Combine the vectors
+
+Make an updated vector which combines the two vectors you have just made, `ig_vector` and `ig_vector_later`, such that it contains the time spent by this individual on Instagram in sequence from day 1 to day 10.
+
+```{r}
+ig_combined <- ...
+```
+
+### d. Calculate mean time spent on Instagram
+
+You now have a vector, `ig_combined`, representing the amount of time (in minutes) an individual spent on Instagram each day for ten consecutive days. Using the `mean()` function, calculate the average time spent on Instagram per day over these ten days.
+
+```{r}
+# Write your code below
+ig_mean_time <- ...
+```
+
+### e. Identify days with exactly 2 hours spent on Instagram
+
+Now, this communication researcher wants to know on which of the 10 days this individual spent exactly 2 hours on Instagram.
+
+Make a new list, `ig_twohours`, which has 10 boolean values in sequence for each day, TRUE if individual spent exactly 2 hours on that day, and FALSE if not.
+
+```{r}
+# Write your code below
+ig_twohours <- ...
+```
