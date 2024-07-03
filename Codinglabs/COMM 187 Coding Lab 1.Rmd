@@ -24,7 +24,7 @@ Many of our lessons are inspired by R for Data Science feel free to check it out
 
 This will probably be a bit redundant from the DataCamp class, but it is good to really know the basics!
 
-![](/Users/HannahOverbye/My%20Drive/Teaching/COMM%20160DS/COMM187_Summer24/Codinglabs/R_source_editor.png)
+![](R_source_editor.png)
 
 **R Studio has four main panels:**
 
@@ -268,7 +268,7 @@ coffee_matrix
 
 Matrices in R follow the format where the row number is listed first, followed by the column number
 
-![](/Users/HannahOverbye/My%20Drive/Teaching/COMM%20160DS/COMM187_Summer24/Codinglabs/r_notation_matrix.png)
+![](r_notation_matrix.png)
 
 **Data Frames**
 
