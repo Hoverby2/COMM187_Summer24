@@ -1,0 +1,177 @@
+---
+title: "Coding Lab 3 Statistics in R"
+author: "Hannah Overbye-Thompson"
+date: "2024-07-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# **Introduction and Announcements**
+
+# **Learning Statistics in R**
+
+Today we will be going over different statistical tests in R. To do this, we will be using a data set that is pre-built into R. Do do this, we need to run the `data` function and select the dataset "iris".
+
+The Iris dataset comprises measurements of iris flowers from three different species: Setosa, Versicolor, and Virginica. Each sample consists of four features: sepal length, sepal width, petal length, and petal width. Additionally, each sample is labeled with its corresponding species.
+
+```{r}
+data("iris")
+```
+
+We also need to load in our required libraries:
+
+```{r}
+library(tidyverse) 
+library(broom) 
+```
+
+## One sample t-test
+
+```{r}
+t_test_result <- t.test(iris$Sepal.Length, mu = 5.8) %>% tidy()
+print(t_test_result)
+# note if you want to turn off scientific notation, you can use options(scipen=999)
+```
+
+## Paired Samples t-test
+
+he `iris` dataset does not have a naturally paired data structure. For demonstration, I create a paired dataset by duplicating and adding noise.
+
+```{r}
+iris_paired <- iris %>%
+  mutate(Sepal.Length2 = Sepal.Length + rnorm(nrow(iris)))
+
+# Paired samples t-test
+paired_t_test_result <- t.test(iris_paired$Sepal.Length, iris_paired$Sepal.Length2, paired = TRUE) %>% tidy()
+print(paired_t_test_result)
+```
+
+## Independent Samples t-test
+
+```{r}
+t_test_result <- t.test(Sepal.Length ~ Species, data = iris %>% filter(Species != "virginica")) %>% tidy()
+
+print(t_test_result)
+```
+
+## Regression
+
+```{r}
+regression_model <- lm(Sepal.Length ~ Petal.Length, data = iris)
+regression_result <- tidy(regression_model)
+print(regression_result)
+```
+
+## Correlation
+
+```{r}
+correlation_result <- cor.test(iris$Sepal.Length, iris$Petal.Length)
+print(correlation_result)
+```
+
+## ANOVA
+
+```{r}
+anova_result <- aov(Sepal.Length ~ Species, data = iris) %>% tidy()
+print(anova_result)
+```
+
+## ANCOVA
+
+```{r}
+# ANCOVA comparing Sepal.Length among Species while controlling for Petal.Length
+ancova_result <- lm(Sepal.Length ~ Species + Petal.Length, data = iris) %>% anova() %>% tidy()
+print(ancova_result)
+```
+
+## MANOVA
+
+```{r}
+
+# MANOVA comparing Sepal.Length and Petal.Length among Species
+manova_result <- manova(cbind(Sepal.Length, Petal.Length) ~ Species, data = iris)
+summary(manova_result)
+```
+
+## Chi-Square Goodness of Fit Test
+
+```{r}
+
+chisq_test_result <- chisq.test(table(iris$Species)) # we need to use the table function to count the different species 
+print(chisq_test_result)
+```
+
+## Chi-Square Test of Association
+
+The `iris` dataset does not have two categorical variables. For demonstration, I created an artificial categorical variable.
+
+```{r}
+
+iris <- iris %>%
+  mutate(Size = ifelse(Sepal.Length > median(Sepal.Length), "Large", "Small"))
+
+# Chi-Square Test of Association
+chisq_test_result <- chisq.test(table(iris$Species, iris$Size))
+print(chisq_test_result)
+```
+
+## Logistic Regression
+
+```{r}
+# Create binary dependent variable
+iris <- iris %>%
+  mutate(Large = ifelse(Sepal.Length > median(Sepal.Length), 1, 0))
+
+# Logistic Regression
+logistic_model <- glm(Large ~ Petal.Length + Petal.Width, data = iris, family = binomial)
+
+logistic_result <- tidy(logistic_model)
+print(logistic_result)
+```
+
+### **Practice Question**
+
+For the following practice questions, you will be using the dataset `mtcars`.
+
+```{r}
+data("mtcars")
+```
+
+**Question 1**
+
+A good practice whenever you load a new dataset is to explore it a little bit. Select three variables (make sure one is continuous/numerical and at least one is categorical) and calculate descriptive statistics (mean, median and mode) or frequencies, if it is a categorical variable (to do this, use the function `table()` )
+
+```{r}
+# Your code here 
+```
+
+**Question 2**
+
+Come up with three hypotheses, one for a question involving a regression, one for a question involving a t-test (you can pick which t-test) and one involving a Chi-Squared goodness of fit test. Write out your hypotheses below as well as why you chose that particular test.
+
+H1 (regression)
+
+H2 (t-test)
+
+H3 (chi-squared goodness of fit)
+
+**Question 3**
+
+Now run the appropriate test to test your hypothesis below
+
+```{r}
+# your code here
+```
+
+**Question 4**
+
+Write a summary of what you found for each hypotheses below:
+
+H1
+
+H2
+
+H3
