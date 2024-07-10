@@ -1,0 +1,60 @@
+---
+title: "Assignment_2"
+author: "your name here"
+date: "2024-07-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+For assignment 2, we are going to be using the Mario Kart data again to do some statistical analysis. Make sure you print your name at the top of the assignment! Before you start, familarize yourself with the <data:https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-05-25>
+
+## Question 1 (.5pts)
+
+Load the `tidyverse` and the `broom` library into R
+
+```{r}
+```
+
+## Question 2 (.5 pts)
+
+Load the Mario Data `records.csv` and save it to an object.
+
+```{r}
+
+```
+
+## Question 3 (1 pt)
+
+Using `select` create a smaller dataframe that includes the variables `time`, `track`, `shortcut` and `record_duration`. Name this new object df_sm
+
+```{r}
+```
+
+## Question 4 (2pts)
+
+Calculate the average time in seconds and the average record duration, group by track and shortcut. Once you have calculated the average time in seconds and the record duration, sort these values in ascending order.
+
+What track has the fastest average time? Was a shortcut used? What track has the shortest record duration? Was a shortcut used?
+
+```{r}
+```
+
+## Question 5 (3pts)
+
+Conduct a Chi-Squared Goodness of Fit Test on either track or shortcut. Interpret the results.
+
+```{r}
+```
+
+## Question 6 (3 pts)
+
+Conduct a regression with time (your X variable) predicting record_duration (your Y variable). Interpret the results
+
+```{r}
+
+```
+
+Once you are done, knit the document to html using the knit button at the top of R stuido. Please submit both your .rmd file as well as your knitted .html file to Canvas
