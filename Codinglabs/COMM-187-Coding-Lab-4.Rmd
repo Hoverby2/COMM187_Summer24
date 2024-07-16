@@ -1,0 +1,233 @@
+---
+title: 'Coding Lab 4: Data Visualization'
+author: "Hannah Overbye-Thompson"
+date: "2024-07-16"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# **Introduction and Announcements**
+
+One of the most important things we do with programming is visualizing data. Data visualization allows us to:
+
+Communicate what we have found with a larger audience Inspect patterns and trends in our data Identify outliers in our data Compare variables In R, we use the tidyverse package, which includes ggplot2, a powerful tool for data visualization.
+
+First we will need to load our `tidyverse` library and also the `ggplot2` library
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse) 
+library(ggplot2)
+```
+
+Today we will be exploring the iris dataset that we used in class last week. As a reminder, to load one of R's built in datasets we first need to use the function `data` followed by the name of the dataset we want to use.
+
+```{r}
+data("iris")
+```
+
+## Basics of ggolot
+
+### Scatter Plots
+
+Now that we have our data and the correct packages loaded, we can start building a plot using `ggplot`. `ggplot` works in layers, so we can start by creating a plot with no
+
+```{r}
+ggplot(data = iris)
+```
+
+Nest, we can specify what data that we want to plot, to do this we use the `aes()` (Aesthetic Mapping**)** function in ggplot.
+
+```{r}
+ggplot(aes(x = Petal.Length, y = Petal.Width), data = iris)
+```
+
+You'll notice that now we have a grid, where Petal Width is on the Y axis, and Petal Length is on the vertical Axis.
+
+A plot or figure typically includes a horizontal X axis and a vertical Y axis, a title, an X label, a Y label, and X and Y tick marks.
+
+These axes provide a framework for plotting data points. The X axis typically represents the independent variable, while the Y axis represents the dependent variable. They allow viewers to interpret the relationship between the variables. The title offers a brief description of what the plot is about, giving viewers immediate context. It summarizes the main point or focus of the data being presented, while the labels on the X and Y axes identify the variables being measured and the units of measurement.
+
+Now we have to tell R what type of plot we want to make. Let's start with a scatter plot. We do this by adding a `+` and then the command `geom_point()` on the next line.
+
+```{r}
+ggplot(aes(x = Petal.Length, y = Petal.Width), data = iris) + 
+  geom_point()
+```
+
+-   note that there are two ways to do this, you could write code like I have above, or you could put your X and Y and aes() command in the geom_point() function.
+
+```{r}
+ggplot(data=iris)+
+  geom_point(mapping=aes(x=Petal.Length,y=Petal.Width))
+```
+
+You can also add multiple `geoms` to your plot, for example it might be useful if we had a line that showed the general relationship between Petal Length and Petal Width
+
+```{r}
+ggplot(aes(x = Petal.Length, y = Petal.Width), data = iris) + 
+  geom_point() + 
+  geom_smooth(method = 'lm')
+```
+
+You can also add color to your plots in order to get more information about your data, for example what if we wanted to visualize the relationship between petal length and petal width by the species of flower?
+
+```{r}
+ggplot(aes(x = Petal.Length, y = Petal.Width), data = iris) + 
+  geom_point(aes(color = Species)) + 
+  geom_smooth(method = 'lm')
+```
+
+Note, if you put `color = Species` in the ggplot aes() function, you will change the color of all of the later `geom` arguments as well, not just the color of `geom_point`
+
+```{r}
+ggplot(aes(x = Petal.Length, y = Petal.Width, color = Species), data = iris) + 
+  geom_point() + 
+  geom_smooth(method = 'lm')
+```
+
+One of the most important considerations when creating visualizations is making sure that they are understandable. One of the easiest ways to do this is to add labels. In `ggplot` you can do this by using `ggtitle` `xlab` and `ylab`
+
+```{r}
+ggplot(aes(x = Petal.Length, y = Petal.Width), data = iris) + 
+  geom_point(aes(color = Species)) + 
+  geom_smooth(method = 'lm') + 
+  ggtitle("Petal Width and Length") + 
+  ylab("Petal Width") + 
+  xlab("Petal Length")
+```
+
+R can make many different types of plots! Let's try a few more.
+
+### Bar Plots
+
+When you have a single categorical variable you can make a bar plot using `geom_bar`. `geom_bar` will count the number of instances of different categories and plot them for you. This plot is best used if you are running a test like chi-squared goodness of fit.
+
+```{r}
+ggplot(aes(x = Species), data = iris) + 
+  geom_bar()
+```
+
+### Histograms
+
+When you have a single continuous variable you can make a histogram using `geom_histogram`. Similar to `geom_bar`, `geom_histogram`will count the number of instances of a continuous variable and plot it for you. This shows you the distribution of your data.
+
+ggplot(aes(x = Petal.Width), data = iris) +
+
+geom_bar()
+
+```{r}
+ggplot(aes(x = Petal.Width), data = iris) + 
+  geom_bar()
+```
+
+### Frequency Plot
+
+Another way to visualize the distribution of your data is through `geom_freqpoly`.
+
+```{r}
+ggplot(aes(x = Petal.Width), data = iris) + 
+  geom_freqpoly()
+```
+
+### Column Plot
+
+If you want to visualize two variables, in addition to using `geom_scatter` you can use `geom_col`. Unlike `geom_scatter`, which is best used on two continuous variables, `geom_col` is best used if you have a continuous Y variable and a categorical X variable
+
+```{r}
+ggplot(aes(x = Species, y = Petal.Width), data = iris) + 
+  geom_col()
+
+```
+
+Now, the Y axis here is just the sum of the pedal width for each flower species. However, this data is not necessarily useful. To get useful information, such as the differences between the average pedal width, we need to group our data first:
+
+```{r}
+average_width <- iris %>% 
+  group_by(Species) %>% 
+  summarize(average = mean(Petal.Width, na.rm = TRUE))
+
+average_width
+```
+
+```{r}
+ggplot(aes(x = Species, y = average), data = average_width) + 
+  geom_col()
+```
+
+For more information about the different types of plots you can create using ggplot, see: <https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf>
+
+### **Practice Questions**
+
+For the following practice questions, you will be using the dataset `mtcars`. More information about `mtcars` can be found here: <https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/mtcars>
+
+```{r}
+data("mtcars")
+```
+
+Before we begin our analysis, I am going to tell R to treat the variable `cyl` as a categorical variable. The way to do this is to use the `as_factor` function, and then override the original variable.
+
+```{r}
+mtcars$cyl <- as_factor(mtcars$cyl)
+```
+
+#### Question 1a
+
+Using `geom_point` create a plot with `mpg` on the Y axis and `wt` on the X axis
+
+```{r}
+```
+
+#### Question 1b
+
+Now color the points according to `cyl`
+
+```{r}
+```
+
+#### Question 1c
+
+Now use `geom_smooth(method = 'lm')` to add a regression line to the plot.
+
+```{r}
+```
+
+#### Question 1d
+
+Finally, add labels to the plot to make it easier to read.
+
+```{r}
+
+```
+
+#### Question 1e
+
+Finally, write a brief sentence interpreting the results of your plot.
+
+#### Question 2
+
+Use `geom_bar` to create a bar plot of `cyl`
+
+```{r}
+
+```
+
+#### Question 3a
+
+Create a new variable titled `average_qsec` that calculates the average quarter mile time (`qsec`) by the number of cylinders (`cyl`)
+
+```{r}
+```
+
+#### Question 3b
+
+Now plot the average quarter mile time by the number of cylinders using `geom_col()`
+
+```{r}
+```
+
+#### Question 3c
+
+Write a sentence to interpret the results of this plot.
