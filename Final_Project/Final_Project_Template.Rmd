@@ -1,0 +1,71 @@
+---
+title: 'FINAL PROJECT TITLE HERE'
+author: "NAME 1 NAME 2 NAME 3"
+date: "2024-07-16"
+output: html_document
+---
+
+**Names:** Insert FULL NAMES of group members, in no particular order
+
+**Dataset:** Insert name of dataset here
+
+NOTE: THIS IS A TEMPLATE FOR THE FINAL PROJECT. REPLACE PLACEHOLDER TEXT CONTENT WITH YOUR OWN TEXT AND CODE. DELETE THIS LINE.
+
+Before you begin your data report, with your team choose a dataset from the tidytuesday github that we have not previously used in class: <https://github.com/rfordatascience/tidytuesday>
+
+# **Introduction (group work -- 3 points)**
+
+Write a brief introduction that sets up your core research question and the hypotheses begin analyzed in this data report (500 words).
+
+-   Write a brief paragraph giving some background information about the domain that you are analyzing. For example, if you were using the Mario Kart data, you would provide some information about what Mario Kart is, how it is played, etc.
+
+-   Set up a broad question about your data. For example, how do Mario Kart world records differ by variables such as track and shortcut. It is highly recommended that you discuss within your group what your individual hypotheses should be in order to make your broad question as coherent as possible.
+
+-   Each group member must then create two hypotheses. One hypothesis should be a chi-square test, one hypothesis should be using continuous data (i.e., t-test, anova, regression, etc.)
+
+# **Data Description (group work -- 5 points)** 
+
+For each variable that is part of your report, prepare:
+
+-   Summary statistics (mean, median, standard deviation), either in text or as a table. Or if it is a categorical variable, a table of frequencies.
+
+-   A visualization (e.g., bar chart, histogram etc).
+
+Get as creative with this as you want! Make sure you appropriately group your variables so that they match your hypothesis. For example, if I were asking if average time to complete a Mario Kart track differed by if someone used a shortcut, I would group my variable by shortcut and provide summary statistics for both if they did or did not use a shortcut.
+
+```{r}
+### Load your dataset
+
+```
+
+```{r}
+### Your descriptive statistical analysis
+```
+
+```{r}
+### Your descriptive visualization
+```
+
+# **Data Analysis (individual work, 10 points for each individual)**
+
+#### Name of group member
+
+Clearly state your hypotheses, which should claim a relationship between two variables in your dataset. One hypothesis should be a chi-square test, one hypothesis should be using continuous data (i.e., t-test, anova, regression, etc.). Use the appropriate statistical test to analyze your relationship. Then visualize the relationship, and write a brief explanation of your results.
+
+```{r}
+
+```
+
+#### Name of group member
+
+Clearly state your hypotheses, which should claim a relationship between two variables in your dataset. One hypothesis should be a chi-square test, one hypothesis should be using continuous data (i.e., t-test, anova, regression, etc.). Use the appropriate statistical test to analyze your relationship. Then visualize the relationship, and write a brief explanation of your results.
+
+```{r}
+
+```
+
+# **Conclusion (group work -- 3 points)** 
+
+Clearly restate the core question, the constituent hypotheses, and summarize all the results. Present a summary of interpretations of these results, and how they connect with each other. Briefly explain what the main takeaway from the entire report should be. (250 words)
+
+## **An additional 4 points will be awarded for overall readability and professionalism of the report, this includes the professionalism of the project presentation**
