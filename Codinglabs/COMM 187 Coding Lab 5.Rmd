@@ -1,0 +1,22 @@
+---
+title: "Coding Lab 5"
+author: "Hannah Overbye-Thompson"
+date: "2024-07-23"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# **Introduction and Announcements**
+
+Today we will be learning some more advanced data visualization! Since there is so many options for how to visualize data in R, we are going to be doing something a little bit different today. Instead of following a set tutorial, you are going to spend around 30-40 minutes looking through r-graph-gallery.com, and trying to replicate one of their example visualizations.
+
+Next, you will spend the rest of class trying to create a cool visualization from your final project data.
+
+But first, let's look at some examples of excellent data visualization in R.
+
+<https://r-graph-gallery.com/best-r-chart-examples>
+
+<https://r-graph-gallery.com/web-lollipop-plot-with-r-mario-kart-64-world-records.html>
