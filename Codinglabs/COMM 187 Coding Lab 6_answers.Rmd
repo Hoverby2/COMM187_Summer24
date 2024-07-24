@@ -1,0 +1,247 @@
+---
+title: "Coding Lab 6"
+author: "Hannah Overbye-Thompson"
+date: "2024-07-24"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# **Introduction and Announcements**
+
+# **Other Programming Things You Need to Know**
+
+## Conditional Statements
+
+Conditional statements are a fundamental aspect of programming that allow you to control the flow of execution based on certain conditions. In R, the primary tool for creating conditional logic is the `if...else` statement.
+
+```{r, eval = FALSE}
+if (condition) {
+  # Code to execute if condition is true
+} else {
+  # Code to execute if condition is false
+}
+```
+
+-   **Condition**: This is a logical expression that evaluates to either `TRUE` or `FALSE`.
+
+-   **Code to execute if condition is true**: This block of code runs if the condition is `TRUE`.
+
+-   **Code to execute if condition is false**: This block of code runs if the condition is `FALSE`.
+
+For example:
+
+```{r}
+x <- 5
+
+if (x > 0) {
+  print("x is positive")
+} else {
+  print("x is not positive")
+}
+```
+
+### Using `else if` for Multiple Conditions
+
+When you have multiple conditions to check, you can use the `else if` statement. The syntax is:
+
+```{r, eval = FALSE}
+if (condition1) {
+  # Code to execute if condition1 is true
+} else if (condition2) {
+  # Code to execute if condition2 is true
+} else {
+  # Code to execute if none of the conditions are true
+}
+```
+
+```{r}
+
+if (x > 0) {
+  print("x is positive")
+} else if (x < 0) {
+  print("x is negative")
+} else {
+  print("x is zero")
+}
+```
+
+### Vectorized `ifelse` Function
+
+```{r}
+x <- c(-1, 0, 1, 2)
+
+result <- ifelse(x > 0, "positive", "non-positive")
+print(result)
+```
+
+## While Loops
+
+In R, the `while` loop is used to repeat a block of code as long as a specified condition is true.
+
+```{r, eval = FALSE}
+while (condition) {
+  # Code to execute repeatedly as long as the condition is true
+}
+```
+
+-   **condition**: This is a logical expression that is evaluated before each iteration of the loop. The loop continues as long as this condition is `TRUE`.
+
+-   **Code to execute repeatedly**: This block of code runs repeatedly as long as the condition remains `TRUE`.
+
+```{r}
+x <- 1
+
+while (x <= 5) {
+  print(x)
+  x <- x + 1
+}
+```
+
+### Break Condition
+
+Sometimes you may want to exit the loop before the condition becomes `FALSE`. You can use the `break` statement to achieve this:
+
+```{r}
+x <- 1
+
+while (x <= 10) {
+  if (x == 6) {
+    break
+  }
+  print(x)
+  x <- x + 1
+}
+```
+
+## For Loops
+
+In R, `for` loops are commonly used for tasks such as iterating over vectors or data frames.
+
+```{r, eval = FALSE}
+for (variable in sequence) {
+  # Code to execute for each element in the sequence
+}
+```
+
+-   **variable**: A temporary variable that takes the value of each element in the sequence during each iteration.
+
+-   **sequence**: A vector, list, or other iterable structure that contains the elements to loop over.
+
+-   **Code to execute**: The block of code that runs for each element in the sequence.
+
+```{r}
+numbers <- c(1, 2, 3, 4, 5)
+
+for (num in numbers) {
+  print(num)
+}
+```
+
+```{r}
+fruits <- list("apple", "banana", "cherry", "banana")
+
+for (fruit in fruits) {
+  print(fruit)
+}
+```
+
+## The Paste Function
+
+The `paste()` function allows you to combine multiple strings (characters!) into one, with optional separators between the elements.
+
+```{r, eval = FALSE}
+paste(..., sep = " ", collapse = NULL)
+```
+
+-   **\...**: The strings or vectors to be concatenated.
+
+-   **sep**: A character string to separate the terms (default is a space `" "`).
+
+-   **collapse**: An optional string to separate the results when the input is a vector (default is `NULL`).
+
+```{r}
+str1 <- "Hello"
+str2 <- "world"
+result <- paste(str1, str2, sep = ", ")
+print(result)
+```
+
+## `%in%` Operator 
+
+%in% is used to check if elements of one vector are present in another vector.
+
+```{r}
+x <- 3
+y <- c(1, 2, 3, 4, 5)
+
+y %in% x
+```
+
+### **Practice Questions**
+
+For these practice questions we will be using the `iris` dataset again. First, we will need to load the data
+
+```{r}
+data("iris")
+```
+
+**Question 1**
+
+Write an if else statement inside a for loop that prints out if an iris flower has a long or short sepal length. Assume a sepal length greater than 5 is long
+
+```{r}
+for (i in iris$Sepal.Length) { 
+  if (i > 5) { 
+    print("long")
+  } else { 
+    print("short")} 
+    }
+```
+
+**Question 2a**
+
+Using `%in%` Check to see if "virginica" is in iris species
+
+```{r}
+"virginica" %in% iris$Species
+```
+
+**Question 2a**
+
+Using `%in%` and the `table()` function, see how many times "virginica" appears in iris species
+
+```{r}
+table(iris$Species %in% "virginica")
+```
+
+**Question 3**
+
+Write a while loop that calculates the cumulative sum of `Sepal.Length` until the cumulative sum exceeds 100
+
+```{r}
+sum <- 0 
+threshold <- 50 
+i = 1 
+
+while (sum < threshold) { 
+  sum <- sum + iris$Sepal.Length[i]
+  i = 1 + 1
+  print(sum)
+  }
+
+```
+
+**Question 4a**
+
+Think of a situation when an if else statement would be useful. Write out that situation below:
+
+**Question 4b**
+
+Think of a situation when a while loop would be useful. Write out that situation below:
+
+**Question 4c**
+
+Think of a situation when a for loop would be useful. Write out that situation below:
