@@ -18,6 +18,6 @@ Critically analyze the ethics of data collection, development, storage, and anal
 
 Think about communication research problems “algorithmically”
 
-Do programming in Python at a beginner level
+Do programming in R at a beginner level
 
 Identify instances of effective data storytelling and spot misleading forms of data journalism in daily digital media
